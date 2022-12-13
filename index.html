@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>As10</title>
+    <style>
+        .content{
+            width: 408px;
+            height: 771px;
+            border: 2px solid gray;
+            margin-left: 500px ;
+            margin-top: 100px;
+            border-radius: 20px;
+        }
+        .imagec{
+            width: 380px;
+            height: 300px;
+            border: 2px solid black;
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-left: 13px;
+        }
+        img{
+            width: 380px;
+            height: 300px;
+        }
+        .name{
+            text-align: center;
+        }
+
+        h2{
+            margin-left: 10px;
+        }
+        button{
+            margin: 130px 140px;
+            padding: 20px 30px;
+            font-size: 23px;
+            background-color: blue;
+            border: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="imagec">
+            <img src="" alt="" class="character-img">
+        </div>
+        <h1 class="name"></h1>
+        <h2>Specie : <span class="specie"></span></h2>
+        <h2>Gender : <span class="gender"></span></h2>
+        <h2>Mass : <span class="mass"></span></h2>
+        <button>Generate</button>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").on("click",function(){
+                // console.log("clicked")
+                const num = Math.ceil(Math.random()*88);
+                // console.log(num)
+                $.get(`https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${num}.json`,
+                function (data){
+                    // console.log(data)
+                    $(".name").text(data['name'])
+                    $(".character-img").attr("src",data['image'])
+                    $(".specie").text(data['species'])
+                    $(".gender").text(data['gender'])
+                    $(".mass").text(data['mass'])
+
+
+                })
+            })
+        })
+    </script>
+</body>
+</html>
